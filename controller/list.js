@@ -5,6 +5,12 @@ const getList=()=>{
   return execSql(sql)
 }
 
+const insertNewData=(data)=>{
+  const sql=`insert into list(title,content) values('${data.title}','${data.content}')`
+  return execSql(sql)
+}
+
 module.exports={
-  getList
+  getList,
+  insertNewData
 }
