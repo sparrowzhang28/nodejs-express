@@ -16,6 +16,19 @@ app.set('view engine', 'jade');
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: false }));
 
+// 可能的跨域解决方案
+// app.all('*', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+//   res.header("X-Powered-By", ' 3.2.1')
+//   res.header("Content-Type", "application/json;charset=utf-8");
+//   next();
+// });
+//
+// var cors = require('cors');
+// app.use(cors());
+
 // 定义路由 tip:这里的路径与路由组件中的组件组成完整路径  此处常见设置为 /api 等
 app.use('/list',listRouter)
 
