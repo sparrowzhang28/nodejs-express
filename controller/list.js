@@ -10,7 +10,19 @@ const insertNewData=(data)=>{
   return execSql(sql)
 }
 
+const updateItem=(data)=>{
+  const sql=`update list set title='${data.title}' where id='${data.id}'`
+  return execSql(sql)
+}
+
+const deleteItem=(id)=>{
+  const sql=`delete from list where id='${id}'`
+  return execSql(sql)
+}
+
 module.exports={
   getList,
-  insertNewData
+  insertNewData,
+  updateItem,
+  deleteItem
 }

@@ -1,13 +1,16 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var parser = require('body-parser');
 
 const listRouter=require('./routes/list')
-
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: false }));
 
 app.use('/list',listRouter)
 
