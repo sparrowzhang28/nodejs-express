@@ -3,16 +3,22 @@ var express = require('express');
 var path = require('path');
 var parser = require('body-parser');
 
+// 定义路由组件
 const listRouter=require('./routes/list')
+
 var app = express();
 
+// 设置引擎模板，否则报错
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// 解析参数
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: false }));
 
+// 定义路由 tip:这里的路径与路由组件中的组件组成完整路径  此处常见设置为 /api 等
 app.use('/list',listRouter)
+
 
 app.use(function(req, res, next) {
   next(createError(404));
