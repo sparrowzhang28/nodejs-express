@@ -4,7 +4,7 @@
   "description": "nodejs with express ",
   "main": "app.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev port=8765 nodemon ./bin/www"
+    "dev": "cross-env NODE_ENV=dev port=5555 nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
