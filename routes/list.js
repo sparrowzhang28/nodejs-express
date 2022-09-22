@@ -10,8 +10,29 @@ router.get('/',function(req,res){
 router.get('/list',function(req,res){
    const promise=getList()
    promise.then((sqlData)=>{
+    req.session.data = JSON.stringify(sqlData)
     res.json(new Success(sqlData))
    })
+})
+
+router.get('/redis-test', (req, res, next) => {
+  if (req.session && req.session.data) {
+      res.json(
+          new Success({
+              tip: 'redis返回',
+              data:req.session.data
+          })
+      )
+  } else {
+    const promise=getList()
+    promise.then((sqlData)=>{
+     req.session.data = sqlData
+     res.json(new Success({
+      tip: '接口返回',
+      data:sqlData
+  }))
+    })
+  }
 })
 
 router.post('/list',function(req,res){

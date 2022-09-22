@@ -2,6 +2,8 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var parser = require('body-parser');
+const session=require('express-session');
+const RedisStore=require('connect-redis')(session);
 
 // 定义路由组件
 const listRouter=require('./routes/list')
@@ -29,6 +31,19 @@ app.all('*', function(req, res, next) {
 // var cors = require('cors');
 // app.use(cors());
 
+const {redisServer} =require('./exec/execRedis')
+const sessionStore=new RedisStore({
+  client:redisServer
+})
+app.use(session({
+  secret:'23@#RRRRdfg-+fgg',
+  cookie:{
+    httpOnly:true,
+    path:'/',
+    maxAge:2000*1000
+  },
+  store:sessionStore
+}))
 // 定义路由 tip:这里的路径与路由组件中的组件组成完整路径  此处常见设置为 /api 等
 app.use('/list',listRouter)
 

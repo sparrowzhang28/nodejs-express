@@ -8,6 +8,12 @@ const MYSQL_CONF={
   database:'blogs'
 }
 
+const REDIS_CONF={
+  host:'127.0.0.1',
+  port: '6379',
+}
+
 module.exports={
-  MYSQL_CONF
+  MYSQL_CONF,
+  REDIS_CONF
 }
