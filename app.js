@@ -40,7 +40,7 @@ app.use(session({
   cookie:{
     httpOnly:true,
     path:'/',
-    maxAge:2000*1000
+    maxAge:20*1000
   },
   store:sessionStore
 }))
