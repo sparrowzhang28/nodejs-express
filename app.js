@@ -40,12 +40,12 @@ app.use(session({
   cookie:{
     httpOnly:true,
     path:'/',
-    maxAge:20*1000
+    maxAge:20*1000   // 对应redis-key的过滤值 当超过此时间，redis中存储的内容会被清理
   },
   store:sessionStore
 }))
 // 定义路由 tip:这里的路径与路由组件中的组件组成完整路径  此处常见设置为 /api 等
-app.use('/list',listRouter)
+app.use('/api',listRouter)
 
 
 app.use(function(req, res, next) {

@@ -2,6 +2,7 @@ const express=require('express')
 const router=express.Router();
 const {Success,Error} =require('../model/resModel')
 const {getList,insertNewData,updateItem,deleteItem} =require('../controller/list')
+const {redisServer}=require('../exec/execRedis')
 
 router.get('/',function(req,res){
   res.json('list-page')
@@ -16,7 +17,12 @@ router.get('/list',function(req,res){
 })
 
 router.get('/redis-test', (req, res, next) => {
+  redisServer.get('responseList', function (err, reply) {
+    console.log(reply); // 获取指定redis key对应的值
+  })
   if (req.session && req.session.data) {
+    // if(redisData){
+      // req.session.cookie.maxAge = 365 * 24 * 60 * 60 * 1000;   // 设置当前redis的 有效时间
       res.json(
           new Success({
               tip: 'redis返回',
@@ -26,7 +32,8 @@ router.get('/redis-test', (req, res, next) => {
   } else {
     const promise=getList()
     promise.then((sqlData)=>{
-     req.session.data = sqlData
+    req.session.data = sqlData
+    // redisServer.set('responseList',JSON.stringify(sqlData))   // 设置指定的redis名称
      res.json(new Success({
       tip: '接口返回',
       data:sqlData
