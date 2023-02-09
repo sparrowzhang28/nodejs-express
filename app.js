@@ -45,6 +45,7 @@ app.use(session({
   store:sessionStore
 }))
 // 定义路由 tip:这里的路径与路由组件中的组件组成完整路径  此处常见设置为 /api 等
+// 在项目中，此处可设置为空，项目中做转发代理
 app.use('/api',listRouter)
 
 

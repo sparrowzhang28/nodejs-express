@@ -8,6 +8,7 @@ router.get('/',function(req,res){
   res.json('list-page')
 })
 
+// 和app.js中的 /api及此处参数组成外部程序使用的路由Url
 router.get('/list',function(req,res){
    const promise=getList()
    promise.then((sqlData)=>{

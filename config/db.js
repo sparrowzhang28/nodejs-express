@@ -13,6 +13,10 @@ const REDIS_CONF={
   port: '6379',
 }
 
+// redis启动命令
+// 安装redis-cli之后，只需输入命令即可
+// 可set get或flushdb flushall等操作
+
 module.exports={
   MYSQL_CONF,
   REDIS_CONF
